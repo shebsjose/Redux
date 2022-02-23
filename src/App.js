@@ -1,22 +1,19 @@
 import React from 'react';
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { increment,decrement, singIn,singUp } from './action';
+import { increment,decrement, fetchUser} from './action';
 
 
 function App() {
   const counter = useSelector(state => state.counter);
-  const isLogged = useSelector(state => state.isLogged);
+  const userApi = useSelector(state => state.asyncAction);
   const dispatch = useDispatch();
-  console.log(counter);
   return (  
     <div className="App">
     <h1>Count { counter.value }</h1>
     <button onClick={() =>{dispatch(increment())}}> + </button>
     <button onClick={() =>{dispatch(decrement())}}> - </button><br />
-    <button onClick={()=>{dispatch(singIn())}}>LogIn</button>
-    <button onClick={()=>{dispatch(singUp())}}>LogOut</button><br />
-    {isLogged ? <h3>Your are Logged In</h3> : ''}
+    <button onClick={() =>{dispatch(fetchUser())}}> API Calling </button><br />
     </div>
   );
 }

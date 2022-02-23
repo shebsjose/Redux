@@ -1,10 +1,10 @@
 import counterReducer from './counter';
-import loggedReducer from './isLogged';
+import AyncActionReducer from './asyncAction';
 import { combineReducers} from 'redux';
 
 const allReducer = combineReducers({
     counter : counterReducer,
-    isLogged : loggedReducer,
+    asyncAction : AyncActionReducer
 });
 
 export default allReducer;
