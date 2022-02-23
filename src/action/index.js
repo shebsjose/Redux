@@ -20,17 +20,7 @@ export const decrement = () => {
     };
 };
 
-export const singIn = () =>{
-    return{
-        type : 'SING_IN'
-    }
-}
 
-export const singUp = () =>{
-    return{
-        type : 'SING_UP'
-    }
-}
 
 
 

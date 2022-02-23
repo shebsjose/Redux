@@ -1,8 +1,8 @@
 const loggedReducer =(state = false, action) => {
     switch(action.type){
-        case 'SING_IN' :
+        case 'SIGN_IN' :
             return !state;
-         case 'SING_UP':
+         case 'SIGN_UP':
                 return !state;
        default :
        return state;
