@@ -1,10 +1,11 @@
+import { connect } from "react-redux";
 const initialState ={
     loading: null,
     users : [],
     error : ''
 }
 
-const AyncActionReducer = (state =initialState,action) => {
+const AysncActionReducer = (state =initialState,action) => {
     switch(action.type){
         case 'FETCH_USER_REQUEST' :
           return {
@@ -28,4 +29,4 @@ const AyncActionReducer = (state =initialState,action) => {
 }
 }
  
-export default AyncActionReducer;
+export default AysncActionReducer;

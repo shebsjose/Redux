@@ -13,7 +13,7 @@
 
 const initialState = { value: 5 }
 
-function counterReducer(state = initialState, action) {
+function CounterReducer(state = initialState, action) {
   switch(action.type){
             case 'INCREMENT' :
               return {value:state.value + 1}
@@ -23,4 +23,4 @@ function counterReducer(state = initialState, action) {
                 return state;
   }
 }
-export default counterReducer;
+export default CounterReducer;

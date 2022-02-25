@@ -18,6 +18,7 @@ export const fetchUserRequest = () => {
     };
 };
 
+
 export const fetchUserSuccess  = users => {
     return {
         type : 'FETCH_USER_SUCCESS', 
@@ -30,30 +31,14 @@ export const fetchUserFailure = error => {
         type : 'FETCH_USER_FAILURE',
         payload : error
     };
-};
-
-// export const fetchUser = () => {
-//     return function (dispatch) {
-//         dispatch(fetchUserRequest())
-//          axios.get('https://jsonplaceholder.typicode.com/users123')
-//         .then(response =>{
-//             // response.data is the array of users
-//             dispatch(fetchUserSuccess(response.data))
-//         })
-//         .catch(error => {
-//             // error.message is the description
-//           dispatch(fetchUserFailure(error.message))
-//         })
-        
-//     }
-// }
+}
 
 export const fetchUser = () => {
     return async  dispatch => {
         try {
             dispatch(fetchUserRequest())
             console.log('request');
-            const response = await axios.get('https://jsonplaceholder.typicode.com/users123');
+            const response = await axios.get('https://jsonplaceholder.typicode.com/users');
             dispatch(fetchUserSuccess(response.data));
           }
           catch(error) {
