@@ -4,14 +4,16 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.css";
-import { createStore, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
-import allReducer from "./reducer";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import createSagaMiddleware from "redux-saga";
 import { Provider } from "react-redux";
+import myFirstReducer from "./reducer";
+import mySaga from "./sagas";
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(allReducer, composeEnhancers(applyMiddleware(thunk)));
-//store.subscribe(() => console.log(store.getState()));
+const sagaMiddleware = createSagaMiddleware();
+const rootReducer = combineReducers({ myFirstReducer });
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(mySaga);
 
 ReactDOM.render(
   <Provider store={store}>
