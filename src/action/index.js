@@ -42,7 +42,7 @@ export const fetchUser = () => {
           }
           catch(error) {
               console.log('error');
-            dispatch(fetchUserFailure(error.message))
+            dispatch(fetchUserFailure(error.message || 'Unexpected Error!!!' ))
           }
           
 }

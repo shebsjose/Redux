@@ -1,23 +1,26 @@
-import { useSelector, useDispatch } from "react-redux";
-import { fetchUser } from "../action";
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchUser } from '../action';
 
 const User = () => {
-  const users = useSelector((state) => state.asyncAction.users);
+  const users = useSelector(state => state.asyncAction.users);
+  const usersLoading = useSelector(state => state.asyncAction.loading);
   const dispatch = useDispatch();
-  console.log(users);
-  return (
-    <div className="m-4">
-      <button
-        className="btn btn-warning"
-        onClick={() => {
-          dispatch(fetchUser());
-        }}
-      >
-        {" "}
-        API Calling{" "}
-      </button>
-      <br />
-      <table className="table">
+  
+  const handleClick =(loading) => {
+ 
+        if (loading) {
+          setTimeout(()=>{
+               dispatch(fetchUser())
+          },1000)
+          return <div>Loading...</div>;
+          
+        }
+     
+  }
+    return ( 
+        <div className='m-4'>
+             <button className="btn btn-warning"onClick={handleClick}> API Calling </button><br/>
+              <table className="table table-striped">
         <thead>
           <tr>
             <th scope="col">Name</th>
@@ -26,18 +29,18 @@ const User = () => {
           </tr>
         </thead>
         <tbody>
-          {users &&
-            users.map((user, index) => (
-              <tr key={index}>
-                <td>{user.name}</td>
-                <td>{user.username}</td>
-                <td>{user.email}</td>
-              </tr>
-            ))}
+        {usersLoading && "...loading"}
+          {users && users.map((user, index) => (
+                <tr key={index}>
+                  <td>{user.name}</td>
+                  <td>{user.username}</td>
+                  <td>{user.email}</td>
+                </tr>
+              ))}
         </tbody>
       </table>
-    </div>
-  );
-};
-
+        </div>
+     );
+}
+ 
 export default User;
