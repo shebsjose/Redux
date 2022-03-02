@@ -12,11 +12,21 @@ function* workGetUserFetch() {
   yield put({ type: GET_USERS_SUCCESS, users });
 }
 
-// function* mySaga() {
-//   yield takeEvery(GET_USERS_FETCH, workGetUserFetch);
-// }
+// // function* mySaga() {
+// //   yield takeEvery(GET_USERS_FETCH, workGetUserFetch);
+// // }
 
-function* mySaga() {
+// function* mySaga() {
+//     yield takeLatest(GET_USERS_FETCH, workGetUserFetch);
+  // }
+  function* mySaga() {
+    try {
+      const users = yield call(usersFetch)
+      yield put({ type: 'GET_USERS_SUCCESS',users })
+    }
+    catch(error) {
+      yield put({ type: 'PRODUCTS_REQUEST_FAILED', error })
+    }
     yield takeLatest(GET_USERS_FETCH, workGetUserFetch);
   }
 
